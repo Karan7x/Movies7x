@@ -9,9 +9,7 @@ I Can Provide Movies And Series, Just Add Me In Your Group And Make Me Admin!!
 
     ABOUT_TXT = """<b>✯ Mʏ Nᴀᴍᴇ : {}</b>
 
-<b>✯ Cʜᴀɴɴᴇʟ : @gujjubhaio</b>
-
-<b>✯ Gʀᴏᴜᴘ : @gujjubhaigroup7</b>
+<b>✯ Cʜᴀɴɴᴇʟ : @Movies7x</b>
 
 <b>✯ Bᴜɪʟᴅ Sᴛᴀᴛᴜs : ᴠ5.0.1 [Sᴛᴀʙʟᴇ]</b>"""
     
