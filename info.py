@@ -39,7 +39,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_Files')
 
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
-SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'gujjubhaigroup7')
+SUPPORT_CHAT = environ.get('SUPPORT_CHAT', '+4oPhLWY1N3E0Y2Jl)
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "True")), True)
 IMDB = is_enabled((environ.get('IMDB', "True")), False)
 SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "True")), False)
@@ -67,6 +67,6 @@ LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
 
     
 #URL SHORTNER
-URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'Tnlink.in')
-URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', '3f7af0bd90d4fbf94a7baaaa84a710bbc7c19db6')
+URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'omegalinks.in')
+URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', '9e7f59d827834c635bd9ecaf350406146aafdd08')
 
