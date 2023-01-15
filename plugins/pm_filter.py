@@ -108,7 +108,7 @@ async def next_page(bot, query):
 
     btn.insert(0,
         [
-            InlineKeyboardButton(text="⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ⚡", url='https://t.me/howtolinks/14')
+            InlineKeyboardButton(text="⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ⚡", url='https://t.me/+YD39Py3A0UAxZmI1')
         ]
     )
 
@@ -435,8 +435,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
             InlineKeyboardButton('ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
-            InlineKeyboardButton('ᴄʜᴀɴɴᴇʟ', url='https://t.me/gujjubhaio'),
-            InlineKeyboardButton('ɢʀᴏᴜᴘ', url='https://t.me/@gujjubhaigroup7')
+            InlineKeyboardButton('ᴄʜᴀɴɴᴇʟ', url='https://t.me/Movies7x'),
+            InlineKeyboardButton('ɢʀᴏᴜᴘ', url='https://t.me/+4oPhLWY1N3E0Y2Jl')
         ], [
             InlineKeyboardButton('ʜᴇʟᴘ', callback_data='help'),
             InlineKeyboardButton('ᴀʙᴏᴜᴛ', callback_data='about')
@@ -688,7 +688,7 @@ async def auto_filter(client, msg, spoll=False):
 
     btn.insert(0,
         [
-            InlineKeyboardButton(text="⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ⚡", url='https://t.me/howtolinks/14')
+            InlineKeyboardButton(text="⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ⚡", url='https://t.me/+YD39Py3A0UAxZmI1')
         ]
     )
 
@@ -739,7 +739,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"🖤Hey {message.from_user.mention}\n🖇Here is result for your query {search}\n\n⚡️Powered By: @gujjubhaio"
+        cap = f"🖤Hey {message.from_user.mention}\n🖇Here is result for your query {search}\n\n⚡️Powered By: @Movies7x"
     if imdb and imdb.get('poster'):
         try:
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
