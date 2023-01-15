@@ -3,8 +3,7 @@ class script(object):
 
 I Can Provide Movies And Series, Just Add Me In Your Group And Make Me Admin!!
 
-🔅 Powered by: @gujjubhaigroup7
-🎭 Request Group: @gujjubhaio</b>
+🔅 Powered by: @Movies7x</b>
 """
     HELP_TXT = """<b>𝖧𝖾𝗅𝗅𝗈 𝖬𝗋. {} 𝖨𝗍'𝗌 𝖬𝗒 𝖧𝖾𝗅𝗉 𝖬𝗈𝖽𝗎𝗅𝖾</b>"""
 
@@ -40,7 +39,7 @@ I Can Provide Movies And Series, Just Add Me In Your Group And Make Me Admin!!
 3. Buttons should be properly parsed as markdown format
 
 <b>URL buttons:</b>
-<code>[Button Text](buttonurl:https://t.me/gujjubhaio)</code>
+<code>[Button Text](buttonurl:https://t.me/Movies7x)</code>
 
 <b>Alert buttons:</b>
 <code>[Button Text](buttonalert:This is an alert message)</code>"""
