@@ -54,7 +54,7 @@
 <details><summary>Deploy To Heroku</summary>
 <p>
 <br>
-<a href="https://heroku.com/deploy?template=https://github.com/AadiX11/gujjubhaio">
+<a href="https://heroku.com/deploy?template=https://github.com/Karan7x/Movies7x">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p>
@@ -63,7 +63,7 @@
 <details><summary>Deploy To VPS</summary>
 <p>
 <pre>
-git clone https://github.com/AadiX11/gujjubhaio
+git clone https://github.com/Karan7x/Movies7x
 # Install Packages
 pip3 install -U -r requirements.txt
 Edit info.py with variables as given below then run bot
