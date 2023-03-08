@@ -2,14 +2,17 @@ import os
 import logging
 import random
 import asyncio
+from pytz import timezone
+from datetime import datetime
+from time import time
 from Script import script
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
+from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
 from info import *
-from utils import get_settings, get_size, is_subscribed, save_group_settings, temp
+from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token
 from database.connections_mdb import active_connection
 import re
 import json
@@ -59,7 +62,7 @@ async def start(client, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    "JOIN UPDATES CHANNEL", url=invite_link.invite_link
+                    "Jᴏɪɴ Oᴜʀ Bᴀᴄᴋ-Uᴘ Cʜᴀɴɴᴇʟ", url=invite_link.invite_link
                 )
             ]
         ]
@@ -68,12 +71,11 @@ async def start(client, message):
             try:
                 kk, file_id = message.command[1].split("_", 1)
                 pre = 'checksubp' if kk == 'filep' else 'checksub' 
-                btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"{pre}#{file_id}")])
-            except (IndexError, ValueError):
-                btn.append([InlineKeyboardButton(" 🔄 Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
         await client.send_message(
             chat_id=message.from_user.id,
-            text="**𝑱𝒐𝒊𝒏 𝑶𝒖𝒓 𝑴𝒐𝒗𝒊𝒆 𝑼𝒑𝒅𝒂𝒕𝒆𝒔 𝑪𝒉𝒂𝒏𝒏𝒆𝒍 𝑻𝒐 𝑼𝒔𝒆 𝑻𝒉𝒊𝒔 𝑩𝒐𝒕!**",
+            text="Pʟᴇᴀsᴇ Jᴏɪɴ Oᴜʀ Bᴀᴄᴋ-Uᴘ Cʜᴀɴɴᴇʟ 🎗 
+Tʜᴇɴ Gᴏ Bᴀᴄᴋ Tᴏ Gʀᴏᴜᴘ Aɴᴅ Rᴇǫᴜᴇsᴛ AGᴀɪɴ
+Yᴏᴜ'ʟʟ Gᴇᴛ Yᴏᴜʀ Fɪʟᴇ 🔆",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
@@ -190,10 +192,50 @@ async def start(client, message):
         return await sts.delete()
         
 
+    elif data.split("-", 1)[0] == "verify":
+        userid = data.split("-", 2)[1]
+        token = data.split("-", 3)[2]
+        if str(message.from_user.id) != str(userid):
+            return await message.reply_text(
+                text="<b>Exᴘɪʀᴇᴅ Lɪɴᴋ !!</b>",
+                protect_content=True,
+            )
+        is_valid = await check_token(client, userid, token)
+        if is_valid == True: 
+            await client.send_message(LOG_CHANNEL, text=script.VERIFY2_TXT.format(message.from_user.mention, userid, datetime.now(timezone(TIMEZONE)).strftime('%d %B, %Y'))),
+            dm=await message.reply_text(
+                text=script.VERIFED_TXT.format( message.from_user.mention),
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ", callback_data='close_data')]]),       
+            )
+            await asyncio.sleep(10)
+            await message.delete()
+            await dm.delete()
+
+            await verify_user(client, userid, token)
+        else:
+            return await message.reply_text(
+                text="<b>Exᴘɪʀᴇᴅ Lɪɴᴋ !!</b>",
+                protect_content=True,
+            )
+
     files_ = await get_file_details(file_id)           
     if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
+            if not await check_verification(client, message.from_user.id) and VERIFY == True:
+                btn =  [[
+                    InlineKeyboardButton("⚜️ ᴠᴇʀɪғʏ ⚜️", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+                    InlineKeyboardButton("❗ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ❗", url=HOW_TO_VERIFY)
+                ]]
+                dmp=await me.reply_text(
+                    text=script.VERIFY_TXT.format( message.from_user.mention),
+                    protect_content=True,
+                    reply_markup=InlineKeyboardMarkup(btn)
+                )
+                await asyncio.sleep(120)
+                await me.delete()
+                await dmb.delete()
+                return
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
@@ -226,14 +268,27 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{files.file_name}"
+    if not await check_verification(client, message.from_user.id) and VERIFY == True:
+        btn = [[
+                    InlineKeyboardButton("⚜️ ᴠᴇʀɪғʏ ⚜️", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+                    InlineKeyboardButton("❗ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ❗", url=HOW_TO_VERIFY)
+                ]]
+        dmp=await message.reply_text(
+            text=script.VERIFY_TXT.format( message.from_user.mention),
+            protect_content=True,
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
+        await asyncio.sleep(120)
+        await message.delete()
+        await dmp.delete()
+        return
     await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
         caption=f_caption,
-        reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('ᴄʜᴀɴɴᴇʟ', url='https://t.me/Movies7x') ] ] ),
+        reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('ᴄʜᴀɴɴᴇʟ', url='https://t.me/MovieoCafe') ] ] ),
         protect_content=True if pre == 'filep' else False,
-        )
-                    
+        )                    
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
