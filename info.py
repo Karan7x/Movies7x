@@ -65,8 +65,10 @@ LOG_STR += ("Spell Check Mode Is Enabled, bot will be suggesting related movies 
 LOG_STR += (f"MAX_LIST_ELM Found, long list will be shortened to first {MAX_LIST_ELM} elements\n" if MAX_LIST_ELM else "Full List of casts and crew will be shown in imdb template, restrict them by adding a value to MAX_LIST_ELM\n")
 LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
 
-    
-#URL SHORTNER
-URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'omegalinks.in')
-URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', '9e7f59d827834c635bd9ecaf350406146aafdd08')
 
+#Verify Features
+VERIFY = bool(environ.get('VERIFY', True))
+HOW_TO_VERIFY = environ.get("HOW_TO_VERIFY", "https://t.me/+YD39Py3A0UAxZmI1")
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'omegalinks.in')
+SHORTLINK_API = environ.get('SHORTLINK_API', '9e7f59d827834c635bd9ecaf350406146aafdd08')
+TIMEZONE = environ.get("TIMEZONE", "Asia/Kolkata")
