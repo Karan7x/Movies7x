@@ -8,7 +8,11 @@ from pyrogram import enums
 from typing import Union
 import re
 import os
-from datetime import datetime
+from Script import script
+import pytz
+from datetime import datetime, date
+import string
+import random
 from typing import List
 from database.users_chats_db import db
 from bs4 import BeautifulSoup
@@ -24,6 +28,8 @@ BTN_URL_REGEX = re.compile(
 
 imdb = Cinemagoer() 
 
+TOKENS = {}
+VERIFIED = {}
 BANNED = {}
 SMART_OPEN = '“'
 SMART_CLOSE = '”'
