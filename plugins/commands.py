@@ -73,9 +73,7 @@ async def start(client, message):
                 pre = 'checksubp' if kk == 'filep' else 'checksub' 
         await client.send_message(
             chat_id=message.from_user.id,
-            text="Pʟᴇᴀsᴇ Jᴏɪɴ Oᴜʀ Bᴀᴄᴋ-Uᴘ Cʜᴀɴɴᴇʟ 🎗 
-Tʜᴇɴ Gᴏ Bᴀᴄᴋ Tᴏ Gʀᴏᴜᴘ Aɴᴅ Rᴇǫᴜᴇsᴛ AGᴀɪɴ
-Yᴏᴜ'ʟʟ Gᴇᴛ Yᴏᴜʀ Fɪʟᴇ 🔆",
+            text="**Pʟᴇᴀsᴇ Jᴏɪɴ Oᴜʀ Bᴀᴄᴋ-Uᴘ Cʜᴀɴɴᴇʟ 🎗 Tʜᴇɴ Gᴏ Bᴀᴄᴋ Tᴏ Gʀᴏᴜᴘ Aɴᴅ Rᴇǫᴜᴇsᴛ AGᴀɪɴ.Yᴏᴜ'ʟʟ Gᴇᴛ Yᴏᴜʀ Fɪʟᴇ 🔆**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
