@@ -4,6 +4,9 @@ import ast
 import math
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
+from pytz import timezone
+from datetime import datetime
+from time import time
 import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
@@ -11,7 +14,7 @@ from info import *
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
-from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings
+from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, verify_user, check_token, check_verification, get_token
 from database.users_chats_db import db
 from database.ia_filterdb import Media, get_file_details, get_search_results
 from database.filters_mdb import (
@@ -30,6 +33,22 @@ FILTER_MODE = {}
 
 @Client.on_message(filters.text & filters.incoming)
 async def give_filter(client, message):
+    chat_type = message.chat.type
+    if not await check_verification(client, message.from_user.id) and chat_type == enums.ChatType.PRIVATE:
+        btn = [[
+            InlineKeyboardButton("⚜️ ᴠᴇʀɪғʏ ⚜️", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+            InlineKeyboardButton("❗ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ❗", url=HOW_TO_VERIFY)
+        ]]
+        dmp=await message.reply_text(
+            text=script.VERIFY_TXT.format( message.from_user.mention),
+            protect_content=True,
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
+        await asyncio.sleep(120)
+        await message.delete()
+        await dmp.delete()
+        return
+
     k = await manual_filters(client, message)
     if k == False:
         await auto_filter(client, message)
