@@ -71,6 +71,9 @@ async def start(client, message):
             try:
                 kk, file_id = message.command[1].split("_", 1)
                 pre = 'checksubp' if kk == 'filep' else 'checksub' 
+                btn.append([InlineKeyboardButton(" Rᴇǫᴜᴇꜱᴛ Aɢᴀɪɴ", callback_data="close_data")])
+            except (IndexError, ValueError):
+                btn.append([InlineKeyboardButton(" Rᴇǫᴜᴇꜱᴛ Aɢᴀɪɴ", url="close_data")])
         await client.send_message(
             chat_id=message.from_user.id,
             text="**Pʟᴇᴀsᴇ Jᴏɪɴ Oᴜʀ Bᴀᴄᴋ-Uᴘ Cʜᴀɴɴᴇʟ 🎗 Tʜᴇɴ Gᴏ Bᴀᴄᴋ Tᴏ Gʀᴏᴜᴘ Aɴᴅ Rᴇǫᴜᴇsᴛ AGᴀɪɴ.Yᴏᴜ'ʟʟ Gᴇᴛ Yᴏᴜʀ Fɪʟᴇ 🔆**",
