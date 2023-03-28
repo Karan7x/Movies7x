@@ -1,19 +1,7 @@
-## • What's New ?
-
-- ⟴ URL Shortener Added
-- ⟴ Self Delete Added (Auto delete)
-- ⟴ Filter On Off Option Added
-- ⟴ Custom Welcome Message
-- ⟴ URL Shortener Added
-- ⟴ Custom Download Name And URL
-- ⟴ Custom Texts (About, Help, Stats,More..)
-- ⟴ Custom URL Buttons (Updates channel, Add To Group, Force Sub, More...)
-
 
 ## Features
 
 - [x] 2GB+ Files Now Support
-- [x] URL Shortener Added
 - [x] Custom Buttons
 - [x] Auto Filter
 - [x] Manual Filter
