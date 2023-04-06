@@ -32,23 +32,7 @@ SPELL_CHECK = {}
 FILTER_MODE = {}
 
 @Client.on_message(filters.text & filters.incoming)
-async def give_filter(client, message):
-    chat_type = message.chat.type
-    if not await check_verification(client, message.from_user.id) and chat_type == enums.ChatType.PRIVATE:
-        btn = [[
-            InlineKeyboardButton("⚜️ ᴠᴇʀɪғʏ ⚜️", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
-            InlineKeyboardButton("❗ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ❗", url=HOW_TO_VERIFY)
-        ]]
-        dmp=await message.reply_text(
-            text=script.VERIFY_TXT.format( message.from_user.mention),
-            protect_content=True,
-            reply_markup=InlineKeyboardMarkup(btn)
-        )
-        await asyncio.sleep(120)
-        await message.delete()
-        await dmp.delete()
-        return
-
+async def give_filter(client, message)
     k = await manual_filters(client, message)
     if k == False:
         await auto_filter(client, message)
