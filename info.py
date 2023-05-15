@@ -69,6 +69,6 @@ LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
 #Verify Features
 VERIFY = bool(environ.get('VERIFY', True))
 HOW_TO_VERIFY = environ.get("HOW_TO_VERIFY", "https://t.me/+YD39Py3A0UAxZmI1")
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'mdisklink.link')
-SHORTLINK_API = environ.get('SHORTLINK_API', '8a62bcfbcd20b869f5116dc953e46b9080b7e233')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'tnshort.net')
+SHORTLINK_API = environ.get('SHORTLINK_API', 'c4adf3f51e4cd266535368c487c36fba89373b48')
 TIMEZONE = environ.get("TIMEZONE", "Asia/Kolkata")
